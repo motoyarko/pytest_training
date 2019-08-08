@@ -1,7 +1,6 @@
 from collections import namedtuple
 import pytest
-Task = namedtuple('Task', ['summary', 'owner', 'done', 'id'])
-Task.__new__.__defaults__ = (None, None, False, None)
+from tasks import Task
 
 
 def test_asdict():
