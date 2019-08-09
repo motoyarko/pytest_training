@@ -1,5 +1,6 @@
-import tasks
 import pytest
+import tasks
+
 
 @pytest.fixture(autouse=True)
 def initialized_tasks_db(tmpdir):
