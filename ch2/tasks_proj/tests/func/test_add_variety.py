@@ -74,6 +74,15 @@ def test_add_6(task):
 
 
 @pytest.mark.parametrize('task', tasks_to_try, ids=task_ids)
+def test_check_count_after_add(task):
+    """check count and """
+    count_before = tasks.count()
+    tasks.add(task)
+    count_after = tasks.count()
+    assert (count_before + 1) == count_after
+
+
+@pytest.mark.parametrize('task', tasks_to_try, ids=task_ids)
 class TestAdd():
     """Demonstrate parametrize and test classes."""
 
