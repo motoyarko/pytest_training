@@ -3,16 +3,19 @@ import tasks
 from tasks import Task
 
 
-@pytest.fixture()
-def tasks_db(tmpdir):
+@pytest.fixture(scope='session')
+def tasks_db_session(tmpdir_factory):
     """Connect to db before tests, disconnect after."""
-    # Setup : start db
-    tasks.start_tasks_db(str(tmpdir), 'tiny')
-
-    yield  # this is where test happens
-
-    # Teardown : stop db
+    temp_dir = tmpdir_factory.mktemp('temp')
+    tasks.start_tasks_db(str(temp_dir), 'tiny')
+    yield
     tasks.stop_tasks_db()
+
+
+@pytest.fixture()
+def tasks_db(tasks_db_session):
+    """an empty tasks db"""
+    tasks.delete_all()
 
 
 # Reminder of Task constructor interface
@@ -21,7 +24,8 @@ def tasks_db(tmpdir):
 # owner and done are optional
 # id is set by database
 
-@pytest.fixture()
+
+@pytest.fixture(scope='session')
 def tasks_just_a_few():
     """all summaries and owners are required"""
     return (
@@ -31,7 +35,7 @@ def tasks_just_a_few():
     )
 
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def tasks_mult_per_owner():
     """several owners with several tasks each"""
     return (
