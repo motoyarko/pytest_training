@@ -5,7 +5,7 @@ from tasks import Task
 tasks_to_try = (Task('sleep', done=True),
                 Task('wake', 'brian'),
                 Task('breathe', 'BRIAN', True),
-                Task('excersise', 'BrIaN', False))
+                Task('exercise', 'BrIaN', False))
 
 task_ids = ['Task({},{},{})'.format(t.summary, t.owner, t.done)
             for t in tasks_to_try]

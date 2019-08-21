@@ -6,6 +6,7 @@ def some_data():
     """return answer"""
     return 42
 
+
 @pytest.fixture()
 def a_tuple():
     """Return something more interesting."""
