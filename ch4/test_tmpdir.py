@@ -1,4 +1,5 @@
 def test_tmpdir(tmpdir):
+    # tmpdir scope is function
     # tmpdir already has a path name associated with it
     # join() extends the path to include a filename
     # the file is created when it's written to
@@ -12,6 +13,7 @@ def test_tmpdir(tmpdir):
 
 
 def test_tmpdir_factory(tmpdir_factory):
+    # tmpdir_factory cope is session
     # you should start with making a directory
     # a_dir acts like the object returned from the tmpdir fixture
     a_dir = tmpdir_factory.mktemp('mydir')
