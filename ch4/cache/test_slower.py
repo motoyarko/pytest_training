@@ -1,5 +1,7 @@
 import pytest
 import datetime
+import random
+import time
 
 
 @pytest.fixture(autouse=True)
@@ -17,3 +19,8 @@ def check_duration(request, cache):
     if last_duration is not None:
         errorstring = "test duration over 2x last duration"
         assert this_duration <= last_duration * 2, errorstring
+
+
+@pytest.mark.parametrize('i', range(5))
+def test_slow_stuff(i):
+    time.sleep(random.random())
