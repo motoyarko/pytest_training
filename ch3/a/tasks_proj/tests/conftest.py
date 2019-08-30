@@ -67,3 +67,19 @@ def db_with_multi_per_one_owner(tasks_db, tasks_mult_per_owner):
     for t in tasks_mult_per_owner:
         tasks.add(t)
 
+
+# @pytest.fixture(autouse=True)
+# def check_duration(request, cache):
+#     key = 'duration/' + request.node.nodeid.replace(':', '_')
+#     # nodeid's can have colons
+#     # keys become filenames within .cache
+#     # replace colons with something filename safe
+#     start_time = datetime.datetime.now()
+#     yield
+#     stop_time = datetime.datetime.now()
+#     this_duration = (stop_time - start_time).total_seconds()
+#     last_duration = cache.get(key, None)
+#     cache.set(key, this_duration)
+#     if last_duration is not None:
+#         errorstring = "test duration over 2x last duration"
+#         assert this_duration <= last_duration * 2, errorstring
